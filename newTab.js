@@ -673,7 +673,39 @@ document.addEventListener("DOMContentLoaded", () => {
         if (tasks[originalIndex].completed) {
           const deleteButton = taskItem.querySelector(".delete-task");
           if (deleteButton) deleteButton.remove();
-        }
+        }  
+        const messages = [
+          "Great job!",
+          "You're making progress!",
+          "Keep going!",
+          "You’re doing amazing!",
+          "So proud of you!",
+          "That’s one more win today!",
+          "You're unstoppable!"
+        ];
+        const speech = document.createElement("div");
+        speech.className = "encouragement-bubble";
+        speech.innerText = messages[Math.floor(Math.random() * messages.length)];
+      
+        // Position it near the deer (or fixed position)
+        speech.style.position = "absolute";
+        speech.style.top = "480px"; // adjust based on where your deer is
+        speech.style.left = "100px"; // adjust based on layout
+        speech.style.zIndex = "9999";
+        speech.style.padding = "10px 14px";
+        speech.style.borderRadius = "12px";
+        speech.style.background = "#fff4dd";
+        speech.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+        speech.style.fontSize = "16px";
+        speech.style.transition = "opacity 1s ease";
+      
+        document.body.appendChild(speech);
+      
+        // Fade out and remove after 3 seconds
+        setTimeout(() => {
+          speech.style.opacity = "0";
+          setTimeout(() => speech.remove(), 1000);
+        }, 2000);
 
         let newPosition = 0;
         if (checkbox.checked) {
