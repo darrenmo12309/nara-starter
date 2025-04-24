@@ -488,7 +488,8 @@ input[type="checkbox"]:checked+.task-text {
     opacity: 0.95;
     animation: welcomeFadeIn 1s ease-out forwards;
     }
-
+    
+/*This class styles the floating speech bubble that appears when a user completes a task */
 .encouragement-bubble {
     position: absolute;
     background: rgba(255, 255, 255, 0.95);
@@ -503,7 +504,8 @@ input[type="checkbox"]:checked+.task-text {
     transition: opacity 1s ease;
     animation: floatUp 0.6s ease-out;
 }
-    
+
+/* Keyframe animation for the bubble to float upward and fade in */
 @keyframes floatUp {
     from {
         transform: translateY(10px);
