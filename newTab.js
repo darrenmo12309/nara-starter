@@ -673,7 +673,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (tasks[originalIndex].completed) {
           const deleteButton = taskItem.querySelector(".delete-task");
           if (deleteButton) deleteButton.remove();
-        }  
+        }
+        
+        // List of possible encouragement messages
         const messages = [
           "Great job!",
           "You're making progress!",
@@ -683,14 +685,19 @@ document.addEventListener("DOMContentLoaded", () => {
           "That’s one more win today!",
           "You're unstoppable!"
         ];
+
+        // Create a speech bubble element
         const speech = document.createElement("div");
         speech.className = "encouragement-bubble";
         speech.innerText = messages[Math.floor(Math.random() * messages.length)];
       
-        // Position it near the deer (or fixed position)
+        // Position it near the deer and other display elements
+        const deer = document.getElementById("deer1-circle");
+        const rect = deer.getBoundingClientRect();
+
         speech.style.position = "absolute";
-        speech.style.top = "480px"; // adjust based on where your deer is
-        speech.style.left = "100px"; // adjust based on layout
+        speech.style.top = `${rect.top - 40}px`;
+        speech.style.left = `${rect.left + rect.width / 2 - 60}px`;
         speech.style.zIndex = "9999";
         speech.style.padding = "10px 14px";
         speech.style.borderRadius = "12px";
@@ -698,7 +705,8 @@ document.addEventListener("DOMContentLoaded", () => {
         speech.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
         speech.style.fontSize = "16px";
         speech.style.transition = "opacity 1s ease";
-      
+        
+        // add it to the DOM
         document.body.appendChild(speech);
       
         // Fade out and remove after 3 seconds
