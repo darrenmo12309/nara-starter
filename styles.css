@@ -552,4 +552,13 @@ input[type="checkbox"]:checked+.task-text {
     padding: 4px;
     box-shadow: 0 0 6px rgba(0,0,0,0.15);
   }
+
+  #task-deer {
+    position: fixed;
+    bottom: 60px;
+    right: 80px;
+    width: 200px;
+    height: auto;
+    z-index: 10;
+  }
   

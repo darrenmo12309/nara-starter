@@ -435,6 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const thankYouMessage = document.createElement("div");
           thankYouMessage.className = "thank-you-message";
           thankYouMessage.textContent = "Thank you for taking good care of me";
+          document.getElementById("task-deer").classList.add("hidden");
           document.body.appendChild(thankYouMessage);
         });
       } else {
@@ -550,6 +551,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Reset the UI to the initial state
     tasksContainer.classList.add("hidden");
     document.getElementById("welcome-message").classList.remove("hidden");
+    document.getElementById("task-deer").classList.add("hidden");
     changeBackgroundWithSlide(initialBackground);
 
     // Remove thank you message if it exists
@@ -732,7 +734,7 @@ document.addEventListener("DOMContentLoaded", () => {
           speech.innerText = messages[Math.floor(Math.random() * messages.length)];
         
           // Position it near the deer and other display elements
-          const deer = document.getElementById("deer1-circle");
+          const deer = document.getElementById("task-deer");
           const rect = deer.getBoundingClientRect();
 
           speech.style.position = "absolute";
@@ -1029,5 +1031,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     tasksContainer.classList.remove("hidden");
+    document.getElementById("task-deer").classList.remove("hidden");
   }
 });
