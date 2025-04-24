@@ -14,6 +14,48 @@ document.addEventListener("DOMContentLoaded", () => {
   // for controlling when hovers are active
   let hoverListeners = [];
 
+  // === Mood Selection ===
+  const moodOptions = [
+    { emoji: "😊", label: "happy" },
+    { emoji: "😐", label: "neutral" },
+    { emoji: "😣", label: "stressed" }
+  ];
+
+  // Create mood container
+  const moodContainer = document.createElement("div");
+  moodContainer.id = "mood-container";
+
+  moodOptions.forEach(({ emoji, label }) => {
+    const button = document.createElement("button");
+    button.className = "mood-button";
+    button.textContent = emoji;
+    button.title = label;
+
+    button.addEventListener("click", () => {
+      const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+      chrome.storage.local.set({ [`mood_${today}`]: label });
+      
+      // Visual feedback
+      document.querySelectorAll(".mood-button").forEach(btn => btn.classList.remove("selected"));
+      button.classList.add("selected");
+    });
+
+    moodContainer.appendChild(button);
+  });
+
+  document.body.appendChild(moodContainer);
+
+  // On load, check if today's mood was saved
+  const todayKey = `mood_${new Date().toISOString().split("T")[0]}`;
+  chrome.storage.local.get([todayKey], (result) => {
+    if (result[todayKey]) {
+      const mood = result[todayKey];
+      const selectedButton = Array.from(document.querySelectorAll(".mood-button")).find(btn => btn.title === mood);
+      if (selectedButton) selectedButton.classList.add("selected");
+    }
+  });
+
+
   // Initial background image with 5 deers
   const initialBackground = "assets/original.jpg";
 
